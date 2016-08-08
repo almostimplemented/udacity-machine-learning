@@ -1,7 +1,7 @@
 # machine-learning
 Projects built for Udacity's Machine Learning curriculum.
 
-All projects include a Dockerfile to ease reproducibility.
+Most projects include a Dockerfile to ease reproducibility.
 
 
 
