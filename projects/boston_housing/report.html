@@ -13820,7 +13820,7 @@ WOIzxhjTqvx/u7NlI7h1IkIAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>As the model complexity increases, more variability in the data is captured, increasing the variance of the prediction. The bias never grows particularly large, on the otherhand (see the last cell in this workbook, which shows that <code>y_test.mean()</code> is close to <code>reg.predict(X_test).mean()</code> for various depths). As the depth increases, the training score increases monotonically. However, after a depth of 4, we see the validation score begin to drop and the prediction uncertainty grow. This is due to the model overfitting the training data, i.e. fitting noise, demonstrated by the nearly vanished training uncertainty.</p>
+<p>As the model complexity increases, more variability in the data is captured, increasing the variance of the prediction. The single layer models have higher bias do to a lack of expressibility, but the bias is never particularly large (see the last cell in this workbook, which shows that <code>y_test.mean()</code> is close to <code>reg.predict(X_test).mean()</code> for various depths). As the depth increases, the training score increases monotonically. However, after a depth of 4, we see the validation score begin to drop and the prediction uncertainty grow. This is due to the model overfitting the training data, i.e. fitting noise, demonstrated by the nearly vanished training uncertainty.</p>
 
 </div>
 </div>
