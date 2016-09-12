@@ -11803,7 +11803,7 @@ This is a (binary) classification problem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
@@ -11857,12 +11857,12 @@ This is a (binary) classification problem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">n_students</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">)</span>
 
-<span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="n">n_passed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">[</span><span class="n">student_data</span><span class="p">[</span><span class="s1">&#39;passed&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span><span class="p">])</span>
 
@@ -11870,7 +11870,7 @@ This is a (binary) classification problem.</p>
 
 <span class="k">assert</span> <span class="n">n_passed</span> <span class="o">==</span> <span class="n">n_students</span> <span class="o">-</span> <span class="n">n_failed</span>
 
-<span class="n">grad_rate</span> <span class="o">=</span> <span class="n">n_passed</span> <span class="o">/</span> <span class="n">n_students</span>
+<span class="n">grad_rate</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">n_passed</span> <span class="o">/</span> <span class="n">n_students</span>
 
 <span class="c1"># Print the results</span>
 <span class="k">print</span> <span class="s2">&quot;Total number of students: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_students</span><span class="p">)</span>
@@ -11891,10 +11891,10 @@ This is a (binary) classification problem.</p>
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Total number of students: 395
-Number of features: 31
+Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
-Graduation rate of the class: 0.67%
+Graduation rate of the class: 67.09%
 </pre>
 </div>
 </div>
@@ -11917,7 +11917,7 @@ Graduation rate of the class: 0.67%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -11999,7 +11999,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12070,25 +12070,11 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Set the number of training points</span>
-<span class="n">num_train</span> <span class="o">=</span> <span class="mi">300</span>
-
-<span class="c1"># Set the number of testing points</span>
-<span class="n">num_test</span> <span class="o">=</span> <span class="n">X_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">num_train</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">shuffle</span>
-
-<span class="n">X_all</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-<span class="n">y_all</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">y_all</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
-
-<span class="c1"># TODO: Shuffle and split the dataset into the number of training and testing points above</span>
-<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_all</span><span class="p">[:</span><span class="n">num_train</span><span class="p">]</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_all</span><span class="p">[</span><span class="n">num_train</span><span class="p">:]</span>
-<span class="n">y_train</span> <span class="o">=</span> <span class="n">y_all</span><span class="p">[:</span><span class="n">num_train</span><span class="p">]</span>
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">y_all</span><span class="p">[</span><span class="n">num_train</span><span class="p">:]</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># Show the results of the split</span>
 <span class="k">print</span> <span class="s2">&quot;Training set has {} samples.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -12189,7 +12175,7 @@ Testing set has 95 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12255,7 +12241,7 @@ Testing set has 95 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
@@ -12267,7 +12253,7 @@ Testing set has 95 samples.
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span><span class="p">,</span> <span class="n">AdaBoostClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
 
-<span class="n">clfs</span> <span class="o">=</span> <span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">(),</span> <span class="n">KNeighborsClassifier</span><span class="p">())</span>
+<span class="n">clfs</span> <span class="o">=</span> <span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span> <span class="n">KNeighborsClassifier</span><span class="p">())</span>
 <span class="p">(</span><span class="n">lr</span><span class="p">,</span> <span class="n">svc</span><span class="p">,</span> <span class="n">knn</span><span class="p">)</span> <span class="o">=</span> <span class="n">clfs</span>
 
 <span class="c1"># Execute the &#39;train_predict&#39; function for each classifier and each training set size</span>
@@ -12278,8 +12264,8 @@ Testing set has 95 samples.
     <span class="k">print</span> <span class="s2">&quot;Classifier {} - &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="k">print</span> <span class="s2">&quot;Training a {} using a training set size of {}. . .&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
-        <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">100</span><span class="o">*</span><span class="n">i</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">100</span><span class="o">*</span><span class="n">i</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">100</span><span class="o">*</span><span class="n">j</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">100</span><span class="o">*</span><span class="n">j</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
     <span class="k">print</span>
 </pre></div>
 
@@ -12295,21 +12281,21 @@ Testing set has 95 samples.
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Classifier 1 - 
 Training a LogisticRegression using a training set size of 300. . .
- | 100   |    0.0026    |     0.0004      |   0.8175   |  0.7218    |
- | 200   |    0.0033    |     0.0006      |   0.8367   |  0.7519    |
- | 300   |    0.0068    |     0.0015      |   0.8318   |  0.7794    |
+ | 100   |    0.0023    |     0.0005      |   0.8593   |  0.7647    |
+ | 200   |    0.0084    |     0.0020      |   0.8562   |  0.7914    |
+ | 300   |    0.0049    |     0.0005      |   0.8468   |  0.8060    |
 
 Classifier 4 - 
 Training a SVC using a training set size of 300. . .
- | 100   |    0.0030    |     0.0015      |   0.8280   |  0.7843    |
- | 200   |    0.0050    |     0.0034      |   0.8508   |  0.8054    |
- | 300   |    0.0071    |     0.0054      |   0.8694   |  0.7914    |
+ | 100   |    0.0024    |     0.0017      |   0.8777   |  0.7746    |
+ | 200   |    0.0045    |     0.0034      |   0.8679   |  0.7815    |
+ | 300   |    0.0068    |     0.0076      |   0.8761   |  0.7838    |
 
 Classifier 4 - 
 Training a KNeighborsClassifier using a training set size of 300. . .
- | 100   |    0.0007    |     0.0016      |   0.7973   |  0.7482    |
- | 200   |    0.0007    |     0.0036      |   0.8495   |  0.7647    |
- | 300   |    0.0009    |     0.0067      |   0.8649   |  0.7612    |
+ | 100   |    0.0005    |     0.0012      |   0.8060   |  0.7246    |
+ | 200   |    0.0005    |     0.0028      |   0.8800   |  0.7692    |
+ | 300   |    0.0007    |     0.0060      |   0.8809   |  0.7801    |
 
 </pre>
 </div>
@@ -12347,24 +12333,24 @@ Training a KNeighborsClassifier using a training set size of 300. . .
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0047</td>
-<td style="text-align:center">0.0007</td>
-<td style="text-align:center">0.8175</td>
-<td style="text-align:center">0.7218</td>
+<td style="text-align:center">0.0023</td>
+<td style="text-align:center">0.0005</td>
+<td style="text-align:center">0.8593</td>
+<td style="text-align:center">0.7647</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0067</td>
-<td style="text-align:center">0.0022</td>
-<td style="text-align:center">0.8367</td>
-<td style="text-align:center">0.7519</td>
+<td style="text-align:center">0.0084</td>
+<td style="text-align:center">0.0020</td>
+<td style="text-align:center">0.8562</td>
+<td style="text-align:center">0.7914</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0037</td>
+<td style="text-align:center">0.0049</td>
 <td style="text-align:center">0.0005</td>
-<td style="text-align:center">0.8318</td>
-<td style="text-align:center">0.7794</td>
+<td style="text-align:center">0.8468</td>
+<td style="text-align:center">0.8060</td>
 </tr>
 </tbody>
 </table>
@@ -12381,24 +12367,24 @@ Training a KNeighborsClassifier using a training set size of 300. . .
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0018</td>
-<td style="text-align:center">0.0016</td>
-<td style="text-align:center">0.8280</td>
-<td style="text-align:center">0.7843</td>
+<td style="text-align:center">0.0024</td>
+<td style="text-align:center">0.0017</td>
+<td style="text-align:center">0.8777</td>
+<td style="text-align:center">0.7746</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0052</td>
-<td style="text-align:center">0.0038</td>
-<td style="text-align:center">0.8508</td>
-<td style="text-align:center">0.8054</td>
+<td style="text-align:center">0.0045</td>
+<td style="text-align:center">0.0034</td>
+<td style="text-align:center">0.8679</td>
+<td style="text-align:center">0.7815</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0173</td>
-<td style="text-align:center">0.0096</td>
-<td style="text-align:center">0.8694</td>
-<td style="text-align:center">0.7914</td>
+<td style="text-align:center">0.0068</td>
+<td style="text-align:center">0.0076</td>
+<td style="text-align:center">0.8761</td>
+<td style="text-align:center">0.7838</td>
 </tr>
 </tbody>
 </table>
@@ -12415,24 +12401,24 @@ Training a KNeighborsClassifier using a training set size of 300. . .
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0010</td>
-<td style="text-align:center">0.0020</td>
-<td style="text-align:center">0.7973</td>
-<td style="text-align:center">0.7482</td>
+<td style="text-align:center">0.0005</td>
+<td style="text-align:center">0.0012</td>
+<td style="text-align:center">0.8060</td>
+<td style="text-align:center">0.7246</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0009</td>
-<td style="text-align:center">0.0067</td>
-<td style="text-align:center">0.8495</td>
-<td style="text-align:center">0.7647</td>
+<td style="text-align:center">0.0005</td>
+<td style="text-align:center">0.0028</td>
+<td style="text-align:center">0.8800</td>
+<td style="text-align:center">0.7692</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0013</td>
-<td style="text-align:center">0.0073</td>
-<td style="text-align:center">0.8649</td>
-<td style="text-align:center">0.7612</td>
+<td style="text-align:center">0.0007</td>
+<td style="text-align:center">0.0060</td>
+<td style="text-align:center">0.8809</td>
+<td style="text-align:center">0.7801</td>
 </tr>
 </tbody>
 </table>
@@ -12467,7 +12453,9 @@ Training a KNeighborsClassifier using a training set size of 300. . .
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <p>I will be optimizing a logistic regression classifier for this problem. Given the limited number of data points and relatively high dimensionality of the data, we would should desire interpretability and low model complexity.</p>
-<p>Interpretability is a very desirable feature for a model for this specific problem. Presumably, we want not only to classify at risk students, but also "apply a treatment" to maximize their chances of passing. Being able to identify which features of the student are contributing to our belief in their risk of failing</p>
+<p>Interpretability is a very desirable feature for a model for this specific problem. Presumably, we want not only to classify at risk students, but also "apply a treatment" to maximize their chances of passing. Being able to identify which features of the student are contributing to our belief in their risk of failing is important for "diagnosing" the at risk student.</p>
+<p>The logistic regression model also shows consistent F1 score improvement as the number of data points increases, giving hope of further improvement at the future expense of more data collection. The SVM shows strong performance, and there is good reason to believe it may perform the best overall. However, the interpretability of the SVM is not as transparent as that of the LR classifier, and for this reason I am opting against using it.</p>
+<p>In reality, I would train and optimize both models, and possibly use them together in an ensemble.</p>
 
 </div>
 </div>
@@ -12522,55 +12510,15 @@ Training a KNeighborsClassifier using a training set size of 300. . .
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">LogisticRegression</span><span class="p">()</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&#39;warm_start&#39;,
- &#39;C&#39;,
- &#39;n_jobs&#39;,
- &#39;verbose&#39;,
- &#39;intercept_scaling&#39;,
- &#39;fit_intercept&#39;,
- &#39;max_iter&#39;,
- &#39;penalty&#39;,
- &#39;multi_class&#39;,
- &#39;random_state&#39;,
- &#39;dual&#39;,
- &#39;tol&#39;,
- &#39;solver&#39;,
- &#39;class_weight&#39;]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;GridSearchCV&#39; and &#39;make_scorer&#39;</span>
 <span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
 <span class="c1"># Running grid search on all classifiers, just out of curiosity</span>
+
+<span class="n">f1_scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">f1_score</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span><span class="p">)</span>
 
 <span class="n">parameter_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">svc</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">:[</span>
                          <span class="p">{</span><span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rbf&#39;</span><span class="p">],</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">],</span>
@@ -12589,7 +12537,7 @@ Training a KNeighborsClassifier using a training set size of 300. . .
 <span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="n">clfs</span><span class="p">:</span>
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
     <span class="k">print</span> <span class="n">clf</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span>
-    <span class="n">grid_obj</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">parameter_dict</span><span class="p">[</span><span class="n">clf</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">])</span>
+    <span class="n">grid_obj</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">parameter_dict</span><span class="p">[</span><span class="n">clf</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">],</span> <span class="n">scoring</span><span class="o">=</span><span class="n">f1_scorer</span><span class="p">)</span>
     <span class="n">grid_obj</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="c1"># Get the estimator</span>
     <span class="n">clf</span> <span class="o">=</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">best_estimator_</span>
@@ -12611,17 +12559,17 @@ Training a KNeighborsClassifier using a training set size of 300. . .
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>LogisticRegression
-Tuned model has a training F1 score of 0.8240.
-Tuned model has a testing F1 score of 0.8028.
-Grid search took 1.12251496315 seconds
+Tuned model has a training F1 score of 0.8323.
+Tuned model has a testing F1 score of 0.7891.
+Grid search took 1.35158896446 seconds
 SVC
-Tuned model has a training F1 score of 0.8285.
-Tuned model has a testing F1 score of 0.8056.
-Grid search took 39.3889818192 seconds
+Tuned model has a training F1 score of 0.8323.
+Tuned model has a testing F1 score of 0.7945.
+Grid search took 108.40683794 seconds
 KNeighborsClassifier
 Tuned model has a training F1 score of 1.0000.
-Tuned model has a testing F1 score of 0.8029.
-Grid search took 0.426414012909 seconds
+Tuned model has a testing F1 score of 0.7867.
+Grid search took 0.455950975418 seconds
 </pre>
 </div>
 </div>
@@ -12646,7 +12594,7 @@ Grid search took 0.426414012909 seconds
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>The final score for the Logistic Regression model was 0.8240 for training and 0.8028 for testing, an noteable improvement from 0.7794.</p>
+<p>The final score for the Logistic Regression model was 0.8323 for training and 0.7891 for testing. The final score is actually slightly worse than the untuned model.</p>
 <p>Curious, I ran the optimization on SVC and KNN to see how all three changed and which ultimiately did the best. All reached a similar score of around 0.8. I still think LR was a good choice, but in retrospect I do find the SVC attractive: the training complexity is higher than for LR but with the small data that is not too large a burden. The SVC performed the best, but I don't think the difference is very significant.</p>
 
 </div>
