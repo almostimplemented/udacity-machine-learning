@@ -21845,6 +21845,7 @@ YII=
 <p>K-means scales well to a large number of samples and minimizes the within-cluster sum-of-squares. The is a natural criteria to minimize: we want our clusters to be tightly packed when possible.</p>
 <p>An advantage of GMM is that the algorithm maximizes only the likelihood, and therefore the resulting clusters will have less structural bias: K-means can be viewed as a special case of GMM with equal covariance per component [1]. Another advantage is that GMM performs "soft-clustering" which gives us the potential to view distributional qualities of the data instead of <em>only</em> their predicted cluster label.</p>
 <p>I'm opting to use GMM for the advantages listed, and because the data exploration done so far makes me think the customer segments may not cleanly separable and may even be overlapping, so I am preferential towards soft-clustering.</p>
+<p>[1] <a href="http://scikit-learn.org/stable/modules/clustering.html">http://scikit-learn.org/stable/modules/clustering.html</a></p>
 
 </div>
 </div>
