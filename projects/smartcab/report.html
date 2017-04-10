@@ -11900,10 +11900,25 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
+<ul>
+<li><em>In the </em><code>agent.py</code><em> Python file, choose three flags that can be set and explain how they change the simulation.</em></li>
+</ul>
 <p>The code documents flags for four different functions: creating the environment, creating the agent, creating the simulation, and running the simulation.</p>
 <p>One example is <code>epsilon</code>. Here <code>epsilon</code> refers to the exploration factor of the Q-learning algorithm. During the execution of the algorithm, the agent will pick a random move with probability <code>epsilon</code>. Note that <code>epsilon</code> typically is dynamically updated to tend to zero.</p>
 <p>Another example is <code>alpha</code>: the learning factor. This value tunes how much more import new information receives versus old information. A value of <code>alpha = 1</code> would imply that no</p>
 <p>A last is <code>tolerance</code>, which sets an upper threshold on the value of <code>epsilon</code> below which testing begins. Implicit is the assumption that <code>epsilon</code> tends to zero.</p>
+<ul>
+<li><em>In the </em><code>environment.py</code><em> Python file, what Environment class function is called when an agent performs an action?</em></li>
+</ul>
+<p><code>act</code></p>
+<ul>
+<li><em>In the </em><code>simulator.py</code><em> Python file, what is the difference between the </em><code>'render_text()'</code><em> function and the </em><code>'render()'</code><em> function?</em></li>
+</ul>
+<p>One renders text, the other renders a GUI display. Text is rendered unconditionally, but the GUI is only rendered if the display flag is set.</p>
+<ul>
+<li><em>In the </em><code>planner.py</code><em> Python file, will the </em><code>'next_waypoint()</code><em> function consider the North-South or East-West direction first?</em></li>
+</ul>
+<p>East-West is considered before North-South.</p>
 
 </div>
 </div>
