@@ -76,7 +76,9 @@ class LearningAgent(Agent):
 
         if self.learning and random.random() > self.epsilon:
             action_dict = self.Q[state]
-            action = max(action_dict.iterkeys(), key=lambda k: action_dict[k])
+            keys = action_dict.keys()
+            random.shuffle(keys) # randomly break ties
+            action = max(keys, key=lambda k: action_dict[k])
 
         return action
 

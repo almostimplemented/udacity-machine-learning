@@ -13674,7 +13674,8 @@ For safety, knowing the <code>inputs</code> of <code>light</code> and neighborin
 <p>As a reminder, our state is</p>
 <p><code>(waypoint, light, left, oncoming)</code></p>
 <p>This state space is a five dimensional lattice. Each of <code>waypoint</code>, <code>left</code>, <code>right</code>, <code>oncoming</code> can assume a value in <code>{forward, right, left, None}</code> (though technically <code>waypoint</code> will only be <code>None</code> if we reach our destination), and <code>light</code> can either be <code>red</code> or <code>green</code>.</p>
-<p>So the state space is roughly <code>4 * 2 * 4 * 4 = 2^7 = 128</code>.</p>
+<p>So the state space is roughly <code>4 * 2 * 4 * 4 = 2^7 = 128</code>. More precisely, since the <code>waypoint</code> will only be <code>None</code> when the agent has reached its destination, the number of relevant states is <code>3/4 * 128 = 96</code>.</p>
+<p>I think the agent can learn a policy for each possible state within a reasonable number of trials. 96 is a tiny state space in the grand scheme of things.</p>
 
 </div>
 </div>
@@ -15579,7 +15580,8 @@ UUqSJEmSJEmdsyglSZIkSZKkzlmUkiRJkiRJUuf+H6WCJ+j16CanAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-Unlike the first simulation, we can see measurable improvment in the driver's performance over time. The reward per action steadily increases, and the frequency of bad actions decrease over time. The linear decay is visible in the plots, as the aformentioned trends are approximatley linear.</p>
+Unlike the first simulation, we can see measurable improvment in the driver's performance over time. The reward per action steadily increases, and the frequency of bad actions decrease over time. The linear decay is visible in the plots, as the aformentioned trends are approximatley linear. It took about 20 trials (<code>1.0 - 0.05*20 = 0 &lt; 0.05</code>) before testing.</p>
+<p>Both simulations look the same in the beginning, since both have epsilon at or near 1, whence the behavior is all but random.</p>
 <p>However, like the first agent, the end product is an agent that is not safe and not reliable. But I suspect if we increase the training trials and tune the hyperparamters, we'll have an A+ driver.</p>
 
 </div>
